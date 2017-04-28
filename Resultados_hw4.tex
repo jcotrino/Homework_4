@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb}
+
+\title{Resultados difusión de energía termina en una lámina.}
+\author{Jonathan Cotrino Lemus}
+\date{28 de Abril de 2017}
+
+
+\begin{document}
+
+\begin{center}
+\textbf{DIFUSI\'ON DE ENERG\'IA T\'ERMICA EN UNA L\'AMINA}
+\end{center}
+A continuaci\'n se presentan los resultados de haber solucionado la ecuaci\'on de difusi\'on bidimensional,
+
+\begin{equation}
+\frac{\partial{T(t, x, y)}}{\partial{t}} = \nu \left(  \frac{{\partial}^2 T(t, x, y)}{{\partial x}^2} + \frac{{\partial}^2 T(t, x, y)}{{\partial y}^2} \right).
+\end{equation}
+
+Para solucionar esta ecuaci\'on se hizo uso del m\'etodo de diferencias finita, con la cual la ecuaci\'on se puede expresar del siguiente modo,
+
+\begin{equation}
+{^{i+1}}{_j}u_k = \{ 1 - 2 \nu (\alpha + \beta)\} \ {^i}{_j} u_{k} + \nu \alpha ({^i}{_{j+1}} u_{k} + {^i}{_{j-1}} u_{k}) + \nu \beta ({^i}{_j} u_{k+1} + {^i}{_j} u_{k-1})
+\end{equation}
+ en donde el superindice izquierdo se refiere al tiempo, el subindice izquierdo se refiere a la coordenada x y finalmente el subindice derecho hace referencia a la coordenada y.
+
+\end{document}
+
