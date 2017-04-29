@@ -1,5 +1,8 @@
 \documentclass{article}
 \usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+
+\graphicspath{{Images/}}
 
 \title{Resultados difusión de energía termina en una lámina.}
 \author{Jonathan Cotrino Lemus}
@@ -9,20 +12,262 @@
 \begin{document}
 
 \begin{center}
-\textbf{DIFUSI\'ON DE ENERG\'IA T\'ERMICA EN UNA L\'AMINA}
+\textbf{\large{DIFUSI\'ON DE ENERG\'IA T\'ERMICA EN UNA PLACA CUADRADA}}
 \end{center}
-A continuaci\'n se presentan los resultados de haber solucionado la ecuaci\'on de difusi\'on bidimensional,
+
+\section{Introducci\'on}
+
+A continuaci\'on se presentan los resultados obtenidos a partir de la soluci\'on de la ecuaci\'on de difusi\'on bidimensional del calor,
 
 \begin{equation}
 \frac{\partial{T(t, x, y)}}{\partial{t}} = \nu \left(  \frac{{\partial}^2 T(t, x, y)}{{\partial x}^2} + \frac{{\partial}^2 T(t, x, y)}{{\partial y}^2} \right).
 \end{equation}
-
-Para solucionar esta ecuaci\'on se hizo uso del m\'etodo de diferencias finita, con la cual la ecuaci\'on se puede expresar del siguiente modo,
+en una placa cuadrada con lados de longitud 1$m$.
+Para solucionar esta ecuaci\'on se hizo uso del m\'etodo de diferencias finitas, con el cual la ecuaci\'on se puede expresar del siguiente modo,
 
 \begin{equation}
-{^{i+1}}{_j}u_k = \{ 1 - 2 \nu (\alpha + \beta)\} \ {^i}{_j} u_{k} + \nu \alpha ({^i}{_{j+1}} u_{k} + {^i}{_{j-1}} u_{k}) + \nu \beta ({^i}{_j} u_{k+1} + {^i}{_j} u_{k-1})
+{^{i+1}}{_j}u_k = \{ 1 - 2 \nu (\alpha + \beta)\} \ {^i}{_j} u_{k} + \nu \alpha ({^i}{_{j+1}} u_{k} + {^i}{_{j-1}} u_{k}) + \nu \beta ({^i}{_j} u_{k+1} + {^i}{_j} u_{k-1}),
 \end{equation}
- en donde el superindice izquierdo se refiere al tiempo, el subindice izquierdo se refiere a la coordenada x y finalmente el subindice derecho hace referencia a la coordenada y.
+ en donde el superindice izquierdo hace referencia al tiempo, el subindice izquierdo a la coordenada x y finalmente el subindice derecho a la coordenada y. $\nu$ es el coeficiente de difusi\'on, en este caso igual a $1 cm^2/s$ y los demás par\'ametros definidos del siguien
+te manera,
+
+\begin{eqnarray}
+\alpha &=& \frac{dt}{ (dx)^2}, \\ 
+\beta &=& \frac{dt}{ (dy)^2}.
+\end{eqnarray}
+
+
+La ecuaci\'on (2) se resolvi\'o para dos casos espec\'ificos y tres tipos de condiciones de frontera. En el primer caso las condiciones iniciales eran tales que toda la placa estaba a una temperatura $T = 50^{\circ} C $, excepto una secci\'on rectangular de  20cmx10cm que se encontraba a $T = 100^{\circ} C$ y  localizada a $x = 20 cm$ del lado izquierdo de la placa y centrada en y. En el segundo caso se tiene la misma situaci\'on con una variaci\'on, pues la temperatura de la secci\'on rectangular permaneci\'o constante para cualquier instante de tiempo (pose\'ia una fuente de calor). Las condiciones de frontera aplicadas fueron abiertas, periodicas y fijas.
+
+Para solucionar cada situaci\'on se tom\'o la diferencia espacial $dx$ igual a un cent\'imetro y el intervalo temporal $dt$ de acuerdo a las condiciones de estabilidad,
+
+\begin{equation}
+\alpha < \frac{1}{2 \nu} \ \ \Rightarrow \ \ dt < \frac{(dx)^2}{2 \nu}, 
+\end{equation}
+
+
+\begin{equation}
+\Rightarrow \ \ dt < 0.5 s,
+\end{equation}
+Para cada situaci\'on y cada condici\'on de fronteras se hall\'o la temperatura $T(t, x, y)$ para tres tiempos: $0s$, $100 s$ y $2500 s$. Esta informaci\'on permiti\'o calcular la temperatura media $T_{mean}$ en funci\'on del tiempo.
+
+\section{Resultados}
+
+\subsection{Caso 1} En la situaci\'on en la cual la secci\'on rectangular que se encuentra a una termperatura de $100^{\circ} C$ y su temperatura puede variar con la transmisi\'on de energ\'ia t\'ermica al resto de la placa, los resultados fueron los siguientes:
+
+\begin{itemize}
+\item[\textbf{1.}] \textbf{Condiciones de frontera cerradas}: en estas las fronteras de la placa permanecen a una temperatura constante. En la figura 1 se puede observar la situaci\'on inicial de la placa, con una secci\'on a $100^{\circ} C$ y el resto a $50^{\circ}C$.
+
+En $t = 100 s$, la situaci\'on est\'a descrita en la figura 2. Como se puede observar,  energ\'ia t\'ermica se ha transmitido de la secci\'on rectangular al resto de la placa cuadrada, elevando la temperatura alrededor de la misma y disminuyendo la de esta.
+
+En $t = 2500$, en donde ha trancurrido un tiempo considerable, podemos observar que la energ\'ia t\'ermica es aproximadamente uniforme. En este caso se observa que la termperatura  en gran parte de la placa es cercana al promedio $T_{mean}$, ver figura 3. La evoluci\'on  de la temperatura promedio se describe en la figura 4.
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_1}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_2}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_3}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_4}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure} 
+
+\item[\textbf{2.}] \textbf{Condiciones de frontera periodicas:} estas condiciones de frontera asocian el estado de los puntos de las fronteras de un lado con el estado de los puntos de las fronteras opuestas (los lados con los lados y las bases con las bases).
+
+Para $t=0s$ tenemos nuevamente la condici\'on inicial ya obtenidas, ver figura 5. La parte interesante viene cuando $t=100 s$, situaci\'on mostrada en la figura 6.
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_5}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+Para $t = 2500 s$ la situaci\'on de la placa se puede observar en la figura 7. Es importante destacar que ... La evoluci\'on  de la temperatura promedio se describe en la figura 8.
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_6}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_7}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_8}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\item[\textbf{3.}] \textbf{Condiciones de frontera abiertas}: este tipo de fronteras permiten que la energ\'ia t\'ermica se transfiera de la placa a un entorno a trav\'es de sus l\'imites. En la figura 9 se puede observar la situaci\'on inicial de la placa, con una secci\'on a $100^{\circ} C$ y el resto a $50^{\circ}C$ (caso ya observado).
+
+En $t = 100 s$, la situaci\'on est\'a descrita en la figura 10. Como se puede observar,  energ\'ia t\'ermica se ha transmitido de la secci\'on rectangular al resto de la placa cuadrada, elevando la temperatura alrededor de la misma y disminuyendo la de esta.
+
+En $t = 2500$ (ver figura 11) en donde ha trancurrido un tiempo considerable, podemos observar que la energ\'ia t\'ermica es aproximadamente uniforme y ha disminuido en la totalidad de la placa debido al ``escape" de energ\'ia en las fronteras. En este caso se observa que la termperatura  en gran parte de la placa es cercana al promedio $T_{mean} = 0 ^{\circ} C$. La evoluci\'on  de la temperatura promedio se describe en la figura 12.
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_9}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_10}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_11}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_12}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\end{itemize}
+
+
+
+\subsection{Caso 2} En este caso la secci\'on rectangular que se encuentra a una termperatura de $100^{\circ} C$ su temperatura no var\'ia con la transmisi\'on de energ\'ia t\'ermica al resto de la placa debido a que en ella se encuentra una fuente t\'ermica. Los resultados fueron los siguientes:
+
+\begin{itemize}
+
+\item[\textbf{1.}] \textbf{Condiciones de frontera cerradas}: en estas las fronteras de la placa permanecen a una temperatura constante. En la figura 13 se puede observar la situaci\'on inicial de la placa, con una secci\'on a $100^{\circ} C$ y el resto a $50^{\circ}C$. El resultado es el mismo que el del caso anterior para esta mismas condiciones de frontera.
+
+En $t = 100 s$, la situaci\'on est\'a descrita en la figura 14. Como se puede observar,  energ\'ia t\'ermica se ha transmitido de la secci\'on rectangular al resto de la placa cuadrada, elevando la temperatura alrededor de la misma sin afectar la temperatura de la misma.
+
+En $t = 2500$, en donde ha trancurrido un tiempo considerable, podemos observar que la energ\'ia t\'ermica es aproximadamente uniforme e igual a $100 ^{\circ} C$ (la corresondiente a la secci\'on rectangular), ver figura 15. En este caso se observa que la termperatura  en gran parte de la placa es cercana al promedio $T_{mean} = 100 ^{\circ} C$. La evoluci\'on  de la temperatura promedio se describe en la figura 16.
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_13}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_14}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_15}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_16}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\item[\textbf{2.}] \textbf{Condiciones de frontera periodicas:} estas condiciones de frontera asocian el estado de los puntos de las fronteras de un lado con el estado de los puntos de las fronteras opuestas (los lados con los lados y las bases con las bases).
+
+Para $t=0s$ tenemos nuevamente la condici\'on inicial ya obtenidas, ver figura 17. La parte interesante viene cuando $t=100 s$, situaci\'on mostrada en la figura 18. La evoluci\'on  de la temperatura promedio se describe en la figura 19.
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_17}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+Para $t = 2500 s$ la situaci\'on de la placa se puede observar en la figura 20. Es importante destacar que ...
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{18}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_19}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_20}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\item[\textbf{3.}] \textbf{Condiciones de frontera abiertas}: este tipo de fronteras permiten que la energ\'ia t\'ermica se transfiera de la placa a un entorno a trav\'es de sus l\'imites. En la figura 21 se puede observar la situaci\'on inicial de la placa, con una secci\'on a $100^{\circ} C$ y el resto a $50^{\circ}C$ (caso ya observado).
+
+En $t = 100 s$, la situaci\'on est\'a descrita en la figura 22. Como se puede observar,  energ\'ia t\'ermica se ha transmitido de la secci\'on rectangular al resto de la placa cuadrada, elevando la temperatura alrededor de la misma pero con la temperatura de la secci\'on rectangular igual a la inicial.
+
+En $t = 2500$, en donde ha trancurrido un tiempo considerable, podemos observar que la energ\'ia t\'ermica es aproximadamente uniforme y ha llegado a su valor l\'imite igual de la fuente que se encuentra en la secci\'on rectangular (ver figura 23). En este caso se observa que la termperatura  en gran parte de la placa es cercana al promedio $T_{mean} = 100 ^{\circ} C$. La evoluci\'on  de la temperatura promedio se describe en la figura 24.
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_21}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_22}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_23}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.2]{Figure_24}
+\end{center}
+\caption{Condici\'on inicial de la placa, $t = 0 s$.}
+\end{figure}
+\end{itemize}
+
 
 \end{document}
 
